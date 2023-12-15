@@ -34,7 +34,7 @@ func NewConsumer(cfg config.NatsConnection, orderRepository order.Repository) (*
 }
 
 func (c *Consumer) Subscribe(ctx context.Context) error {
-	_, err := c.conn.Subscribe(c.subject, c.wrappedMessageHandler(ctx)) // TODO: start from sequence id
+	_, err := c.conn.Subscribe(c.subject, c.wrappedMessageHandler(ctx))
 
 	if err != nil {
 		return fmt.Errorf("error subscribing to subject \"%s\": %s", c.subject, err)
