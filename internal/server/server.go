@@ -44,7 +44,7 @@ func NewServerFromConfig(ctx context.Context, cfg *config.Config) (*Server, erro
 		return nil, err
 	}
 
-	cache := orderRepository.NewRedisRepositoryFromConfig(cfg.Redis)
+	cache := orderRepository.NewInMemoryRepository()
 	orderRepo := orderRepository.NewCachedRepository(primaryDatabase, cache)
 
 	orderConsumer, err := consumer.NewConsumer(cfg.Nats, orderRepo)
